@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/webp" href="./images/favicon.webp">
+  <meta name="theme-color" content="#10aaa4">
+  <title>Skill Orbit | Empowering Homes, Educating Futures</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Mouse+Memoirs&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ee5b24;
+      --gold: #f7b84f;
+      --teal: #10aaa4;
+      --ink: #302b2b;
+      --muted: #666161;
+      --cream: #fff4df;
+      --paper: #fffdfa;
+      --line: #e6d8c9;
+      --display: "Mouse Memoirs", "Arial Narrow", sans-serif;
+      --body: "Fredoka", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; color: var(--ink); font-family: var(--body); font-size: 16px; font-weight: 300; line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .topline { height: 38px; padding: 0 max(4.5vw, 24px); display: flex; align-items: center; justify-content: space-between; color: white; background: var(--teal); font-size: 13px; }
+    .topline__contact, .topline__social { display: flex; align-items: center; gap: 22px; }
+    .topline a:hover { opacity: .8; }
+    .mini-button { padding: 5px 19px; border: 1px solid white; border-radius: 18px; color: white; background: transparent; font-size: 13px; transition: .2s ease; }
+    .mini-button:hover { color: var(--teal); background: white; }
+    .site-header { position: sticky; top: 0; z-index: 10; min-height: 92px; padding: 12px max(4.5vw, 24px); display: flex; align-items: center; justify-content: space-between; gap: 24px; background: white; }
+    .brand img { display: block; width: 260px; max-width: 100%; height: auto; }
+    .nav-wrap { display: flex; align-items: center; gap: 29px; }
+    .main-nav { display: flex; align-items: center; gap: 27px; font-size: 14px; font-weight: 500; }
+    .main-nav a { transition: color .2s ease; }
+    .main-nav a:hover, .main-nav > a:first-child { color: var(--teal); }
+    .programs-nav { position: relative; padding: 12px 0; }
+    .program-menu { position: absolute; top: 100%; left: -18px; z-index: 20; width: 286px; padding: 12px; display: none; border: 1px solid var(--line); border-top: 3px solid var(--orange); border-radius: 8px; background: var(--paper); box-shadow: 0 18px 38px #302b2b20; }
+    .program-menu::before { padding: 5px 9px 10px; display: block; color: var(--teal); content: "LEARNING PROGRAMS"; font-size: 11px; font-weight: 600; }
+    .program-menu a { position: relative; min-height: 50px; padding: 9px 30px 9px 49px; display: flex; align-items: center; border-radius: 5px; color: var(--ink); font-size: 14px; white-space: normal; transition: background .18s ease, color .18s ease; }
+    .program-menu a::before { position: absolute; left: 9px; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; color: var(--teal); background: #e3f5f2; content: "01"; font-size: 11px; font-weight: 600; }
+    .program-menu a:nth-of-type(2)::before { color: #c66c50; background: #fff0e8; content: "02"; }
+    .program-menu a:nth-of-type(3)::before { color: #398ca2; background: #e8f6fa; content: "03"; }
+    .program-menu a:nth-of-type(4)::before { color: #8a7045; background: #fff3d9; content: "04"; }
+    .program-menu a::after { position: absolute; right: 11px; color: var(--orange); content: "›"; font-size: 20px; transition: transform .18s ease; }
+    .program-menu a:hover { color: var(--orange); background: var(--cream); }
+    .program-menu a:hover::after { transform: translateX(3px); }
+    .programs-nav:hover .program-menu, .programs-nav:focus-within .program-menu { display: block; }
+    .programs-chevron { display: inline-flex; width: 12px; height: 12px; margin-left: 5px; align-items: center; justify-content: center; vertical-align: middle; }
+.programs-chevron::before { width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; content: ""; transform: translateY(-1px) rotate(45deg); }
+    .programs-nav:hover > a .programs-chevron, .programs-nav:focus-within > a .programs-chevron { animation: programs-arrow-bob .48s ease-in-out infinite; }
+    @keyframes programs-arrow-bob { 0%, 100% { transform: translateY(-1px); } 50% { transform: translateY(3px); } }
+    @media (prefers-reduced-motion: reduce) {
+      .programs-nav:hover > a .programs-chevron, .programs-nav:focus-within > a .programs-chevron { animation: none; }
+    }
+    .button { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 10px 24px; border: 0; border-radius: 7px; color: #fff; background: var(--gold); font-weight: 500; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-2px); background: var(--orange); }
+    .button--orange { background: var(--orange); }
+    .menu-toggle { width: 42px; height: 42px; padding: 0; display: none; flex: 0 0 42px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 5px; background: white; color: var(--ink); font-size: 21px; cursor: pointer; }
+    .menu-toggle__icon { display: block; line-height: 1; }
+    .mobile-cta { display: none; }
+    .banner { position: relative; height: min(47vw, 670px); min-height: 460px; overflow: hidden; background: #efefef; }
+    .banner__slide { position: absolute; inset: 20px max(4.2vw, 30px); display: flex; align-items: center; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .8s ease, visibility .8s ease; }
+    .banner__slide.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
+    .banner__art { position: absolute; top: 0; right: 0; bottom: 0; width: 44%; background-position: right center; background-repeat: no-repeat; background-size: auto 100%; transition: transform 520ms cubic-bezier(.2,.65,.3,1); }
+    .banner__slide.is-active:hover .banner__art { transform: scale(1.045); }
+    .banner__art--one { background-image: url("images/INDIANS_-2.png"); }
+    .banner__art--two { background-image: url("images/ABACUS-BANNERS-1-1.png"); }
+    .banner__copy { position: relative; z-index: 1; width: 56%; padding: 24px 24px 28px 4.2vw; }
+    .banner__copy h2 { margin: 0 0 14px; color: #292525; font-family: var(--display); font-size: clamp(35px, 3.25vw, 48px); font-weight: 400; line-height: 1.02; }
+    .banner__copy h2 span, .banner__subhead { color: var(--orange); }
+    .banner__label { width: fit-content; margin: 0 0 9px; padding: 2px 15px; border: 1px solid #c9a99b; border-radius: 16px; color: var(--ink); background: #fff; font-size: 14px; }
+    .banner__subhead { margin: 0 0 5px; font-size: 17px; font-weight: 500; }
+    .banner__list { margin: 0 0 13px; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1px; list-style: none; color: #514949; font-size: 14px; line-height: 1.35; }
+    .banner__list li::before { margin-right: 7px; color: var(--orange); content: "○"; font-size: 11px; }
+    .banner__cta { min-height: 36px; padding: 7px 17px; border-radius: 5px; font-size: 13px; }
+    .banner__controls { position: absolute; right: 6vw; bottom: 23px; z-index: 2; display: flex; gap: 8px; }
+    .banner__dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: #d5c7b6; cursor: pointer; }
+    .banner__dot.is-active { background: var(--orange); }
+    .ticker { padding: 15px 18px; color: #fff; background: #f28a00; text-align: center; font-size: 18px; line-height: 1.3; }
+    .section { padding: 100px max(6vw, 26px); }
+    .hero { min-height: 720px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5vw; padding-top: 72px; padding-bottom: 72px; overflow: hidden; background: #fff9ed; }
+    .hero__copy { max-width: 590px; }
+    .eyebrow { display: inline-block; margin-bottom: 17px; color: var(--teal); font-size: 14px; font-weight: 500; text-transform: uppercase; }
+    h1, h2 { margin: 0; color: var(--orange); font-family: var(--display); font-weight: 400; line-height: .98; }
+    h1 { max-width: 620px; font-size: clamp(62px, 7vw, 100px); }
+    .hero__copy p { max-width: 570px; margin: 24px 0 30px; color: #585251; font-size: 18px; line-height: 1.7; }
+    .hero__image { min-height: 565px; align-self: stretch; background: url("images/Empowering.png") center / contain no-repeat; transition: transform 520ms cubic-bezier(.2,.65,.3,1); }
+    .hero__image:hover { transform: scale(1.035); }
+    .about { position: relative; padding-top: 106px; padding-bottom: 120px; text-align: center; background: white; }
+    .section-heading { max-width: 900px; margin: 0 auto 42px; }
+    .section-heading h2 { font-size: clamp(48px, 6.2vw, 72px); }
+    .section-heading p { max-width: 710px; margin: 20px auto 0; color: var(--muted); font-size: 17px; }
+    .feature-grid { max-width: 1200px; margin: 48px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
+    .feature { min-height: 225px; padding: 25px 22px; border: 1px solid #c9c3be; border-radius: 12px; background: #fff; }
+    .feature__icon { width: 40px; height: 40px; margin-bottom: 10px; display: grid; place-items: center; color: var(--teal); font-size: 27px; }
+    .feature:nth-child(2) .feature__icon { color: #d78ab6; }
+    .feature:nth-child(3) .feature__icon { color: #52b8d6; }
+    .feature:nth-child(4) .feature__icon { color: #f27b62; }
+    h3 { margin: 0; font-size: 21px; font-weight: 500; line-height: 1.25; }
+    .feature p { margin: 12px 0 0; color: #706b68; font-size: 14px; line-height: 1.55; }
+    .programs { padding-top: 92px; padding-bottom: 110px; background: var(--cream); text-align: center; }
+    .programs .section-heading { margin-bottom: 40px; }
+    .program-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; text-align: left; }
+    .program { min-height: 335px; display: grid; grid-template-columns: 44% 1fr; overflow: hidden; border-radius: 8px; background: white; box-shadow: 0 8px 25px #9e714014; }
+    .program__image { min-height: 100%; background-position: center; background-size: cover; transition: transform 520ms cubic-bezier(.2,.65,.3,1); }
+    .program:hover .program__image { transform: scale(1.05); }
+    .program__image--one { background-image: url("images/Artboard-1-e1763976113432-1020x1024.jpg"); }
+    .program__image--two { background-image: url("images/Artboard-1-1-1024x1024.jpg"); }
+    .program__image--three { background-image: url("images/Artboard-1-2-1024x1024.jpg"); }
+    .program__image--four { background-image: url("images/Artboard-1-3-1024x1024.jpg"); }
+    .program__copy { padding: 27px 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .program__copy h3 { margin-bottom: 13px; color: #302b2b; font-size: 23px; }
+    .program__copy p { margin: 0 0 20px; color: #6c6561; font-size: 14px; line-height: 1.6; }
+    .text-link { margin-top: auto; padding: 0 0 4px; border: 0; border-bottom: 1px solid var(--orange); color: var(--orange); background: none; font-size: 15px; font-weight: 500; cursor: pointer; }
+    .faq { display: grid; grid-template-columns: .82fr 1fr; align-items: center; gap: 7vw; overflow: hidden; background: #fff; }
+    .faq__image { min-height: 560px; background: url("images/FAQ.jpg") center / contain no-repeat; transition: transform 520ms cubic-bezier(.2,.65,.3,1); }
+    .faq__image:hover { transform: scale(1.035); }
+    .faq__content .section-heading { margin: 0 0 28px; }
+    .faq__content .section-heading h2 { font-size: clamp(48px, 5.5vw, 68px); }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question { width: 100%; padding: 19px 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; border: 0; color: var(--ink); background: transparent; text-align: left; font-size: 18px; font-weight: 400; cursor: pointer; }
+    .faq-question span:last-child { color: var(--orange); font-size: 24px; transition: transform .2s ease; }
+    .faq-answer { max-height: 0; overflow: hidden; color: var(--muted); font-size: 15px; transition: max-height .3s ease; }
+    .faq-item.is-open .faq-answer { max-height: 180px; padding: 0 38px 20px 0; }
+    .faq-item.is-open .faq-question span:last-child { transform: rotate(45deg); }
+    .community { position: relative; min-height: 470px; margin: 20px 8px 14px; padding: 66px 24px 78px; overflow: hidden; border: 1px solid #61564b; border-radius: 42px; background: #fff1d9; text-align: center; }
+    .community h2 { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; color: var(--orange); font-family: var(--body); font-size: 72px; font-weight: 600; line-height: 1.06; }
+    .community p { position: relative; z-index: 1; max-width: 900px; margin: 28px auto 34px; color: var(--ink); font-size: 18px; }
+    .community__actions { display: flex; justify-content: center; gap: 14px; }
+    .community .community__actions .button { min-width: 195px; min-height: 58px; padding: 12px 30px; border: 0; border-radius: 15px; color: #fff; background: #f6a21a; font-size: 16px; font-weight: 600; }
+    .community .community__actions .button:hover { background: var(--orange); }
+    .community__illustration { width: min(100%, 380px); height: auto; margin: 30px auto 0; display: block; transition: transform 520ms cubic-bezier(.2,.65,.3,1); }
+    .community__illustration:hover { transform: scale(1.045); }
+    .community__illustration--home { position: absolute; right: 27px; bottom: -22px; z-index: 0; width: 167px; margin: 0; animation: community-bird-glide 9s ease-in-out infinite; }
+    @keyframes community-bird-glide { 0%, 100% { translate: 0 0; } 50% { translate: -42px 0; } }
+    .site-footer { padding: 66px max(6vw, 26px) 0; color: white; background: #f18a00; }
+    .footer-main { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: start; gap: 50px; }
+    .footer-logo { display: block; width: 230px; margin: 34px auto 0; padding: 13px; border-radius: 6px; background: white; }
+    .footer-logo img { display: block; width: 100%; }
+    .footer-column h3 { margin-bottom: 20px; font-size: 24px; }
+    .footer-column ul { margin: 0; padding: 0; list-style: none; }
+    .footer-column li { margin: 9px 0; font-size: 15px; }
+    .footer-column a:hover { text-decoration: underline; }
+    .footer-bottom { max-width: 1200px; margin: 55px auto 0; padding: 18px 0; display: flex; justify-content: space-between; border-top: 1px solid #ffffff5c; font-size: 13px; }
+    .back-top { position: fixed; right: 22px; bottom: 22px; z-index: 4; width: 42px; height: 42px; border: 0; border-radius: 8px; color: white; background: var(--gold); font-size: 20px; cursor: pointer; }
+    @media (prefers-reduced-motion: reduce) {
+      .banner__art, .hero__image, .program__image, .faq__image, .community__illustration { transition: none; }
+      .banner__slide.is-active:hover .banner__art, .hero__image:hover, .program:hover .program__image, .faq__image:hover, .community__illustration:hover { transform: none; }
+      .community__illustration--home { animation: none; }
+    }
+    .motion-ready .motion-reveal { opacity: 0; transform: translateY(14px); transition: opacity 520ms ease, transform 520ms cubic-bezier(.2,.65,.3,1); transition-delay: var(--motion-delay, 0ms); }
+    .motion-ready .motion-reveal.is-revealed { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .motion-ready .motion-reveal, .motion-ready .motion-reveal.is-revealed { opacity: 1; transform: none; transition: none; }
+    }
+    @media (max-width: 900px) {
+      .topline { height: 32px; }
+      .site-header { min-height: 82px; }
+      .brand img { width: 215px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-wrap { position: absolute; top: 100%; right: 0; left: 0; display: none; padding: 18px 24px 25px; align-items: stretch; flex-direction: column; gap: 18px; background: white; box-shadow: 0 10px 20px #00000012; }
+      .nav-wrap.is-open { display: flex; }
+      .main-nav { align-items: stretch; flex-direction: column; gap: 14px; }
+      .nav-wrap > .button { align-self: flex-start; }
+      .banner { height: 50vw; min-height: 270px; }
+      .banner__slide { inset: 10px 0; }
+      .banner__copy { padding-left: 3vw; }
+      .ticker { padding: 11px 14px; font-size: 14px; }
+      .section { padding-right: 6vw; padding-left: 6vw; }
+      .hero { min-height: auto; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 60px; padding-bottom: 60px; }
+      h1 { font-size: clamp(54px, 8vw, 76px); }
+      .hero__copy p { font-size: 16px; }
+      .hero__image { min-height: 440px; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .program { grid-template-columns: 1fr; }
+      .program__image { min-height: 215px; }
+      .faq { grid-template-columns: .8fr 1fr; gap: 5vw; }
+      .faq__image { min-height: 390px; }
+    }
+    @media (max-width: 767px) {
+      html { scroll-padding-top: 112px; }
+      .topline { display: none; }
+      .site-header { min-height: 104px; padding: 10px 12px; gap: 6px; }
+      .brand img { width: min(205px, 42vw); }
+      .menu-toggle { display: inline-flex; }
+      .nav-wrap { display: none; }
+      .mobile-cta { display: inline-flex; min-height: 40px; padding: 8px 10px; border-radius: 6px; background: #eb755f; font-size: 14px; white-space: nowrap; }
+      .nav-wrap.is-open { display: flex; }
+      .nav-wrap.is-open .program-menu { position: static; width: 100%; margin-top: 6px; display: none; box-shadow: none; }
+      .nav-wrap.is-open .programs-nav.submenu-open .program-menu { display: grid; }
+      .programs-nav { padding: 0; }
+      .banner { height: 48vw; min-height: 250px; }
+      .banner__slide { inset: 0; }
+      .banner__art { width: 43%; }
+      .banner__copy { width: 57%; padding: 14px 8px 27px 16px; }
+      .banner__copy h2 { margin-bottom: 7px; font-size: clamp(18px, 4vw, 25px); }
+      .banner__label { margin-bottom: 5px; padding: 1px 8px; font-size: 10px; }
+      .banner__subhead { margin-bottom: 2px; font-size: 11px; }
+      .banner__list { margin-bottom: 7px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 5px; font-size: 9px; }
+      .banner__list li::before { margin-right: 3px; font-size: 8px; }
+      .banner__cta { min-height: 27px; padding: 4px 10px; font-size: 10px; }
+      .banner__controls { right: 15px; bottom: 8px; }
+      .banner__dot { width: 7px; height: 7px; }
+      .ticker { font-size: 13px; }
+      .section { padding: 66px 22px; }
+      .hero { grid-template-columns: 1fr; gap: 12px; padding-top: 45px; padding-bottom: 30px; }
+      .hero__copy { order: 1; }
+      .hero__image { order: 0; min-height: 88vw; margin: -15px -22px 0; background-size: cover; background-position: center 40%; }
+      .eyebrow { margin-bottom: 11px; font-size: 12px; }
+      h1 { font-size: 56px; }
+      .hero__copy p { margin: 18px 0 22px; font-size: 15px; }
+      .about { padding-top: 75px; padding-bottom: 75px; }
+      .section-heading { margin-bottom: 28px; }
+      .section-heading h2, .faq__content .section-heading h2 { font-size: 48px; }
+      .section-heading p { margin-top: 13px; font-size: 15px; }
+      .feature-grid { margin-top: 30px; grid-template-columns: 1fr; gap: 13px; }
+      .feature { min-height: 0; padding: 19px; }
+      .feature__icon { margin-bottom: 5px; }
+      .programs { padding-top: 68px; padding-bottom: 72px; }
+      .program-grid { grid-template-columns: 1fr; gap: 16px; }
+      .program { grid-template-columns: 39% 1fr; min-height: 260px; }
+      .program__image { min-height: 100%; }
+      .program__copy { padding: 19px 15px; }
+      .program__copy h3 { font-size: 19px; }
+      .program__copy p { font-size: 13px; }
+      .faq { grid-template-columns: 1fr; gap: 12px; }
+      .faq__image { min-height: 290px; }
+      .faq__content .section-heading { text-align: center; }
+      .faq-question { padding: 15px 0; font-size: 15px; }
+      .faq-answer { font-size: 14px; }
+      .community { min-height: 0; margin: 12px 6px; padding: 48px 18px 185px; border-radius: 27px; }
+      .community h2 { font-size: 42px; line-height: 1.06; }
+      .community p { margin: 18px auto 24px; font-size: 16px; }
+      .community__actions { flex-wrap: wrap; gap: 10px; }
+      .community .community__actions .button { min-width: 172px; min-height: 52px; padding: 10px 17px; font-size: 14px; }
+      .community__illustration--home { right: 10px; bottom: -16px; width: min(38vw, 132px); }
+      .site-footer { padding: 48px 24px 0; }
+      .footer-main { grid-template-columns: 1fr; gap: 28px; }
+      .footer-logo { order: -1; margin: 0 0 4px; }
+      .footer-column h3 { margin-bottom: 10px; }
+      .footer-bottom { margin-top: 35px; align-items: flex-start; flex-direction: column; gap: 5px; }
+      .back-top { right: 13px; bottom: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <div class="topline__contact"><a href="tel:+919016318754">☎ &nbsp;+91 9016318754</a><a href="mailto:connect@skillorbits.in">✉ &nbsp;connect@skillorbits.in</a></div>
+    <a class="mini-button" href="#community">Get Franchise</a>
+    <div class="topline__social"><a href="#">f</a><a href="#">◎</a></div>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Skill Orbit home"><img src="images/SO-logo-1.png" alt="Skill Orbit"></a>
+    <a class="button mobile-cta" href="#community">Click here</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span class="menu-toggle__icon" aria-hidden="true">☰</span></button>
+    <div class="nav-wrap">
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a><a href="about-us.html">About Us</a><div class="programs-nav"><a href="#programs">Programs<span class="programs-chevron" aria-hidden="true"></span></a><div class="program-menu"><a href="skill-orbit-abacus-program.html">Abacus Program</a><a href="skill-orbit-vedic-maths-program.html">Vedic Maths Program</a><a href="skill-orbit-phonics-program.html">Phonics Program</a><a href="skill-orbit-fun-grammar-program.html">Fun Grammar Program</a></div></div><a href="franchise.html">Our Franchise</a><a href="contact-us.html">Contact Us</a>
+      </nav>
+      <a class="button" href="contact-us.html#contact-form">Enroll Now!</a>
+    </div>
+  </header>
+  <main id="top">
+    <section class="banner" aria-label="Skill Orbit programs">
+      <div class="banner__slide banner__slide--one is-active" aria-hidden="false"><div class="banner__copy"><h2>India's Fastest Growing<br><span>Abacus, Vedic Maths, Phonics &amp; Fun Grammar</span><br>Franchise Opportunity</h2><div class="banner__label">Perfect For</div><ul class="banner__list"><li>Pre School Owner</li><li>Teachers</li><li>Students</li><li>Housewives</li><li>Anyone who loves teaching kids</li></ul><a class="button button--orange banner__cta" href="franchise.html">Get Franchise</a></div><div class="banner__art banner__art--one" aria-hidden="true"></div></div>
+      <div class="banner__slide banner__slide--two" aria-hidden="true"><div class="banner__copy"><h2>Start Your Own Kids Learning Centre With <span>Skill Orbit</span></h2><div class="banner__label">4 Premium Courses. One Powerful Opportunity.</div><p class="banner__subhead">Programs Included:</p><ul class="banner__list"><li>Abacus</li><li>Vedic Maths</li><li>Phonics</li><li>Fun Grammar</li></ul><a class="button button--orange banner__cta" href="franchise.html">Get Franchise</a></div><div class="banner__art banner__art--two" aria-hidden="true"></div></div>
+      <div class="banner__controls" aria-label="Choose banner slide"><button class="banner__dot is-active" aria-label="Show slide 1"></button><button class="banner__dot" aria-label="Show slide 2"></button></div>
+    </section>
+    <div class="ticker">MASTERMIND SKILL ORBIT PROGRAM IMPROVE CHILD MENTAL AND OVERALL ACADEMIC PERFORMANCE</div>
+    <section class="section hero"><div class="hero__copy"><span class="eyebrow">Learn, grow, and build from home</span><h1>Empowering Homes,<br>Educating Futures</h1><p>At Skillorbit Edunext, we believe that every home has the power to inspire learning. Through our unique concept of Homentrepreneurship, we empower individuals especially homemakers, educators, and youth to combine education with entrepreneurship. Our programs enable them to nurture young minds while creating sustainable home-based ventures that enrich their families and communities.</p><a class="button button--orange" href="#programs">Explore Programs</a></div><div class="hero__image" role="img" aria-label="A teacher helping children learn through creative play"></div></section>
+    <section class="section about" id="about"><div class="section-heading"><span class="eyebrow">About us</span><h2>Building Skills for a Bright Tomorrow</h2><p>Our activity-driven learning approach helps children explore concepts, learn languages, improve social interaction, and unlock their potential through joyful discovery.</p></div><div class="feature-grid"><article class="feature"><div class="feature__icon" aria-hidden="true">✧</div><h3>Holistic Development</h3><p>We blend academics, creativity, and real-life experiences to help children think, explore, and develop essential life skills with confidence.</p></article><article class="feature"><div class="feature__icon" aria-hidden="true">☆</div><h3>Play-Based Learning</h3><p>Children learn languages, concepts, and communication skills through fun, hands-on activities that spark imagination and discovery.</p></article><article class="feature"><div class="feature__icon" aria-hidden="true">♡</div><h3>Communication Skills</h3><p>Our interactive sessions help children express themselves clearly, collaborate with peers, and develop strong social and emotional skills.</p></article><article class="feature"><div class="feature__icon" aria-hidden="true">♧</div><h3>Talent Expression</h3><p>We encourage every child to showcase their strengths through art, movement, storytelling, and activities that nurture creativity and self-expression.</p></article></div></section>
+    <section class="section programs" id="programs"><div class="section-heading"><span class="eyebrow">Our World of Learning</span><h2>What We Bring to Young Learners</h2><p>Carefully curated learning modules that support holistic development and nurture every child's unique abilities.</p></div><div class="program-grid"><article class="program"><div class="program__image program__image--one" role="img" aria-label="Abacus learning activity"></div><div class="program__copy"><h3>Skill Orbit Abacus Program</h3><p>The Abacus Program unlocks each child's hidden potential, blending a timeless counting tool with modern teaching. Kids visualize numbers, calculate mentally, and gain speed and accuracy through engaging, mind-expanding practice.</p><a class="text-link" href="skill-orbit-abacus-program.html">Know more&nbsp; →</a></div></article><article class="program"><div class="program__image program__image--two" role="img" aria-label="Vedic maths learning activity"></div><div class="program__copy"><h3>Skill Orbit Vedic Maths Program</h3><p>The Vedic Maths Program introduces children to ancient Indian techniques for rapid mental calculation. It helps develop mathematical agility, encouraging children to solve problems efficiently without over-reliance on calculators.</p><a class="text-link" href="skill-orbit-vedic-maths-program.html">Know more&nbsp; →</a></div></article><article class="program"><div class="program__image program__image--three" role="img" aria-label="Phonics learning activity"></div><div class="program__copy"><h3>Skill Orbit Phonics Program</h3><p>Our Phonics Program focuses on building strong reading and pronunciation skills in children. Using interactive activities, we teach children to recognize sounds, blend them into words, and read fluently.</p><a class="text-link" href="skill-orbit-phonics-program.html">Know more&nbsp; →</a></div></article><article class="program"><div class="program__image program__image--four" role="img" aria-label="Fun grammar learning activity"></div><div class="program__copy"><h3>Skill Orbit Fun Grammar Program</h3><p>The Grammar Program helps children understand the rules of language in a fun and engaging way. It focuses on sentence formation, tenses, parts of speech, and comprehension skills, building strong communication abilities.</p><a class="text-link" href="skill-orbit-fun-grammar-program.html">Know more&nbsp; →</a></div></article></div></section>
+    <section class="section faq"><div class="faq__image" role="img" aria-label="Learning at Skill Orbit"></div><div class="faq__content"><div class="section-heading"><span class="eyebrow">Skillorbit FAQs</span><h2>Answers to your Skillorbit queries</h2></div><div class="faq-list"><div class="faq-item"><button class="faq-question" aria-expanded="false"><span>What makes Skillorbit Edunext different from traditional learning programs?</span><span>+</span></button><div class="faq-answer"><p>Our activity-driven, play-based approach blends academic learning with creativity and essential life skills.</p></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false"><span>What age group do your programs cater to?</span><span>+</span></button><div class="faq-answer"><p>Our programs are designed for young learners, with modules tailored to a child's stage of development.</p></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Who can join us?</span><span>+</span></button><div class="faq-answer"><p>Homemakers, educators, and anyone who loves helping children learn can join our community.</p></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Are your learning modules activity-based?</span><span>+</span></button><div class="faq-answer"><p>Yes. Children learn through engaging activities, hands-on practice, and joyful discovery.</p></div></div><div class="faq-item"><button class="faq-question" aria-expanded="false"><span>Do you offer support or training for new educators?</span><span>+</span></button><div class="faq-answer"><p>Yes. Our franchise partners receive the guidance and training they need to get started.</p></div></div></div></div></section>
+    <section class="community" id="community"><h2>Become Part of the Skillorbit Community</h2><p>Explore our programs and discover how we help children learn, grow, and thrive together.</p><div class="community__actions"><a class="button button--orange" href="franchise.html">Get Franchise</a><a class="button button--outline" href="contact-us.html#contact-form">Enroll Your Child</a></div><img class="community__illustration community__illustration--home" src="images/home-main-34.png" alt="Illustration of a toucan"></section>
+  </main>
+  <footer class="site-footer" id="contact"><div class="footer-main"><div class="footer-column"><h3>Programs</h3><ul><li><a href="skill-orbit-abacus-program.html">Abacus Program</a></li><li><a href="skill-orbit-vedic-maths-program.html">Vedic Maths Program</a></li><li><a href="skill-orbit-phonics-program.html">Phonics Program</a></li><li><a href="skill-orbit-fun-grammar-program.html">Fun Grammar Program</a></li></ul></div><a class="footer-logo" href="#top"><img src="images/SO-logo-1.png" alt="Skill Orbit"></a><div class="footer-column"><h3>Contact</h3><ul><li>⌖ &nbsp;Ahmedabad, Gujarat</li><li><a href="mailto:connect@skillorbits.in">✉ &nbsp;connect@skillorbits.in</a></li><li><a href="tel:+919016318754">☎ &nbsp;+91 9016318754</a></li></ul></div></div><div class="footer-bottom"><span>SKILLORBIT - (C) 2025 - All Rights Reserved</span><a href="#top">Designed by Grafinno</a></div></footer>
+  <button class="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <script src="site-motion.js"></script>
+  <script>
+    const slides = [...document.querySelectorAll('.banner__slide')];
+    const dots = [...document.querySelectorAll('.banner__dot')];
+    let currentSlide = 0;
+    function showSlide(index) {
+      currentSlide = index;
+      slides.forEach((slide, position) => { const active = position === index; slide.classList.toggle('is-active', active); slide.setAttribute('aria-hidden', String(!active)); });
+      dots.forEach((dot, position) => dot.classList.toggle('is-active', position === index));
+    }
+    dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+    window.setInterval(() => showSlide((currentSlide + 1) % slides.length), 5500);
+    const faqItems = [...document.querySelectorAll('.faq-item')];
+    document.querySelectorAll('.faq-question').forEach(button => button.addEventListener('click', () => {
+      const activeItem = button.closest('.faq-item');
+      const shouldOpen = !activeItem.classList.contains('is-open');
+      faqItems.forEach(item => {
+        const open = item === activeItem && shouldOpen;
+        item.classList.toggle('is-open', open);
+        item.querySelector('.faq-question').setAttribute('aria-expanded', String(open));
+      });
+    }));
+  </script>
+</body>
+</html>
